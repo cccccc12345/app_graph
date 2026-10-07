@@ -1,0 +1,14 @@
+digraph AppGraph {
+  rankdir=LR;
+  node [shape=box, style="rounded,filled", fillcolor="#eff6ff"];
+  s1 [label="State 1\nDepth 0"];
+  s2 [label="State 2\nDepth 1"];
+  s3 [label="State 3\nDepth 1"];
+  s4 [label="State 4\nDepth 1"];
+  s5 [label="State 5\nDepth 1"];
+  s1 -> s2 [label="视频"];
+  s1 -> s3 [label="活动"];
+  s1 -> s4 [label="更多,有新消息"];
+  s1 -> s1 [label="首页"];
+  s1 -> s5 [label="听书"];
+}

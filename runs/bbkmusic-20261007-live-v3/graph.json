@@ -1,0 +1,81 @@
+{
+  "states": [
+    {
+      "id": 1,
+      "depth": 0,
+      "activity": "com.android.bbkmusic/.MusicMainActivity",
+      "screenshot_path": "states/0001/screenshot.png",
+      "xml_path": "states/0001/ui.xml",
+      "phash": "bf8560871fe2856a",
+      "visit_count": 1,
+      "created_at": "2026-10-07 04:21:06",
+      "variants": []
+    },
+    {
+      "id": 2,
+      "depth": 1,
+      "activity": "com.android.bbkmusic/.MusicMainActivity",
+      "screenshot_path": "states/0002/screenshot.png",
+      "xml_path": "states/0002/ui.xml",
+      "phash": "83f0f01f0fe4330f",
+      "visit_count": 1,
+      "created_at": "2026-10-07 04:21:10",
+      "variants": []
+    },
+    {
+      "id": 3,
+      "depth": 1,
+      "activity": "com.android.bbkmusic/.WidgetToTrackActivity",
+      "screenshot_path": "states/0003/screenshot.png",
+      "xml_path": "states/0003/ui.xml",
+      "phash": "ef2285d990b46f62",
+      "visit_count": 1,
+      "created_at": "2026-10-07 04:21:18",
+      "variants": []
+    }
+  ],
+  "edges": [
+    {
+      "from": 1,
+      "to": 2,
+      "action": {
+        "kind": "click",
+        "x": 1094,
+        "y": 309,
+        "x2": 0,
+        "y2": 0,
+        "duration_ms": 350,
+        "text": "",
+        "resource_id": "com.android.bbkmusic:id/vigour_first_icon",
+        "content_desc": "更多,有新消息",
+        "bounds": {
+          "left": 1014,
+          "top": 217,
+          "right": 1175,
+          "bottom": 402
+        }
+      }
+    },
+    {
+      "from": 1,
+      "to": 3,
+      "action": {
+        "kind": "click",
+        "x": 126,
+        "y": 2691,
+        "x2": 0,
+        "y2": 0,
+        "duration_ms": 350,
+        "text": "",
+        "resource_id": "com.android.bbkmusic:id/concise_bottom_icon_music",
+        "content_desc": "首页",
+        "bounds": {
+          "left": 0,
+          "top": 2611,
+          "right": 252,
+          "bottom": 2772
+        }
+      }
+    }
+  ]
+}

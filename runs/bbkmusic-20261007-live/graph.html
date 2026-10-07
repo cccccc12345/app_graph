@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Android App Graph</title><style>
+:root{--bg:#f8fafc;--ink:#172033;--muted:#64748b;--line:#94a3b8;--card:#fff;--accent:#2563eb}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,-apple-system,sans-serif}
+header{position:sticky;top:0;z-index:3;padding:14px 20px;background:#fff;border-bottom:1px solid #e2e8f0;display:flex;gap:16px;align-items:center}
+h1{font-size:18px;margin:0}#stats{color:var(--muted)}main{padding:20px;overflow:auto}#map{position:relative;min-width:720px}
+#edges{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}.edge{stroke:var(--line);stroke-width:1.5;fill:none;marker-end:url(#arrow)}
+.edge-label{font-size:11px;fill:#475569;paint-order:stroke;stroke:var(--bg);stroke-width:4px;stroke-linejoin:round}
+.node{position:absolute;width:190px;background:var(--card);border:1px solid #cbd5e1;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px #0f172a12}
+.node img{display:block;width:100%;height:250px;object-fit:contain;background:#0f172a}.meta{padding:9px 10px}.meta strong{display:block}.meta small{color:var(--muted)}
+#transitions{margin-top:35px;max-width:1000px}#transitions h2{font-size:16px}.transition{padding:8px 10px;border-bottom:1px solid #e2e8f0}code{color:#1d4ed8}
+</style></head><body><header><h1>Android App Graph</h1><span id="stats"></span></header><main><div id="map"><svg id="edges"><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#94a3b8"/></marker></defs></svg></div><section id="transitions"><h2>Transitions</h2><div id="list"></div></section></main>
+<script>
+const graph={"states": [{"id": 1, "depth": 0, "activity": "com.android.bbkmusic/com.tencentmusic.ad.tmead.core.activity.TMECoreActivity", "screenshot_path": "states/0001/screenshot.png", "xml_path": "states/0001/ui.xml", "phash": "a516d64369f41f91", "visit_count": 1, "created_at": "2026-10-07 03:40:48", "variants": []}, {"id": 2, "depth": 1, "activity": "com.android.bbkmusic/com.tencentmusic.ad.tmead.core.activity.TMECoreActivity", "screenshot_path": "states/0002/screenshot.png", "xml_path": "states/0002/ui.xml", "phash": "a506d26b68f45b9c", "visit_count": 1, "created_at": "2026-10-07 03:41:02", "variants": []}], "edges": [{"from": 1, "to": 2, "action": {"kind": "swipe_up", "x": 630, "y": 2128, "x2": 630, "y2": 784, "duration_ms": 350, "text": "", "resource_id": "", "content_desc": "", "bounds": null}}]};
+const map=document.querySelector('#map'),svg=document.querySelector('#edges');
+const states=graph.states, edges=graph.edges;
+document.querySelector('#stats').textContent=`${states.length} states · ${edges.length} transitions`;
+const depths=[...new Set(states.map(s=>s.depth))].sort((a,b)=>a-b), colGap=270,rowGap=300,nodeW=190,nodeH=300;
+const maxRows=Math.max(1,...depths.map(d=>states.filter(s=>s.depth===d).length));
+map.style.width=(depths.length*colGap+nodeW+40)+'px';map.style.height=(maxRows*rowGap+40)+'px';svg.setAttribute('width',map.clientWidth);svg.setAttribute('height',map.clientHeight);
+const positions={};
+for(const depth of depths){const group=states.filter(s=>s.depth===depth);group.forEach((s,i)=>{const x=20+depth*colGap,y=20+i*rowGap;positions[s.id]={x,y};const card=document.createElement('article');card.className='node';card.style.left=x+'px';card.style.top=y+'px';const img=document.createElement('img');img.src=s.screenshot_path;img.alt='State '+s.id+' screenshot';card.appendChild(img);const meta=document.createElement('div');meta.className='meta';meta.innerHTML='<strong>State '+s.id+'</strong><small>Depth '+s.depth+' · Visits '+s.visit_count+'</small><br><small>'+escapeHtml(s.activity||'')+'</small>';card.appendChild(meta);map.appendChild(card)})}
+function escapeHtml(v){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+for(const e of edges){const a=positions[e.from],b=positions[e.to];if(!a||!b)continue;const x1=a.x+nodeW,y1=a.y+nodeH/2,x2=b.x,y2=b.y+nodeH/2;const path=document.createElementNS('http://www.w3.org/2000/svg','path');path.setAttribute('class','edge');path.setAttribute('d',`M${x1},${y1} C${x1+40},${y1} ${x2-40},${y2} ${x2},${y2}`);svg.appendChild(path);const label=document.createElementNS('http://www.w3.org/2000/svg','text');label.setAttribute('class','edge-label');label.setAttribute('x',(x1+x2)/2);label.setAttribute('y',(y1+y2)/2-6);const ac=e.action;label.textContent=ac.text||ac.content_desc||ac.kind;svg.appendChild(label)}
+const list=document.querySelector('#list');for(const e of edges){const row=document.createElement('div');row.className='transition';const ac=e.action;row.innerHTML='<code>State '+e.from+'</code> — '+escapeHtml(ac.text||ac.content_desc||ac.kind)+' → <code>State '+e.to+'</code>';list.appendChild(row)}
+</script></body></html>

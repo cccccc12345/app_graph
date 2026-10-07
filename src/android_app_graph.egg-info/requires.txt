@@ -1,0 +1,4 @@
+Pillow>=10.0
+
+[dev]
+pytest>=8.0

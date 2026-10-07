@@ -1,0 +1,9 @@
+digraph AppGraph {
+  rankdir=LR;
+  node [shape=box, style="rounded,filled", fillcolor="#eff6ff"];
+  s1 [label="State 1\nDepth 0"];
+  s2 [label="State 2\nDepth 1"];
+  s3 [label="State 3\nDepth 1"];
+  s1 -> s2 [label="更多,有新消息"];
+  s1 -> s3 [label="首页"];
+}

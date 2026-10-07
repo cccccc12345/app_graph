@@ -1,0 +1,7 @@
+digraph AppGraph {
+  rankdir=LR;
+  node [shape=box, style="rounded,filled", fillcolor="#eff6ff"];
+  s1 [label="State 1\nDepth 0"];
+  s2 [label="State 2\nDepth 1"];
+  s1 -> s2 [label="swipe_up"];
+}

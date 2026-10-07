@@ -1,0 +1,44 @@
+{
+  "states": [
+    {
+      "id": 1,
+      "depth": 0,
+      "activity": "com.android.bbkmusic/com.tencentmusic.ad.tmead.core.activity.TMECoreActivity",
+      "screenshot_path": "states/0001/screenshot.png",
+      "xml_path": "states/0001/ui.xml",
+      "phash": "a516d64369f41f91",
+      "visit_count": 1,
+      "created_at": "2026-10-07 03:40:48",
+      "variants": []
+    },
+    {
+      "id": 2,
+      "depth": 1,
+      "activity": "com.android.bbkmusic/com.tencentmusic.ad.tmead.core.activity.TMECoreActivity",
+      "screenshot_path": "states/0002/screenshot.png",
+      "xml_path": "states/0002/ui.xml",
+      "phash": "a506d26b68f45b9c",
+      "visit_count": 1,
+      "created_at": "2026-10-07 03:41:02",
+      "variants": []
+    }
+  ],
+  "edges": [
+    {
+      "from": 1,
+      "to": 2,
+      "action": {
+        "kind": "swipe_up",
+        "x": 630,
+        "y": 2128,
+        "x2": 630,
+        "y2": 784,
+        "duration_ms": 350,
+        "text": "",
+        "resource_id": "",
+        "content_desc": "",
+        "bounds": null
+      }
+    }
+  ]
+}

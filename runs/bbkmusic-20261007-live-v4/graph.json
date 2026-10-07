@@ -1,0 +1,264 @@
+{
+  "states": [
+    {
+      "id": 1,
+      "depth": 0,
+      "activity": "com.android.bbkmusic/.MusicMainActivity",
+      "screenshot_path": "states/0001/screenshot.png",
+      "xml_path": "states/0001/ui.xml",
+      "phash": "ef2285d991a06f66",
+      "visit_count": 2,
+      "created_at": "2026-10-07 04:23:46",
+      "variants": [
+        {
+          "screenshot_path": "states/0001/variants/0001.png",
+          "xml_path": "states/0001/variants/0001.xml",
+          "phash": "ffa6845990847f1a",
+          "created_at": "2026-10-07 04:24:16"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "depth": 1,
+      "activity": "com.android.bbkmusic/.MusicMainActivity",
+      "screenshot_path": "states/0002/screenshot.png",
+      "xml_path": "states/0002/ui.xml",
+      "phash": "be91c0c4e33e99c9",
+      "visit_count": 1,
+      "created_at": "2026-10-07 04:23:50",
+      "variants": []
+    },
+    {
+      "id": 3,
+      "depth": 1,
+      "activity": "com.android.bbkmusic/.WidgetToTrackActivity",
+      "screenshot_path": "states/0003/screenshot.png",
+      "xml_path": "states/0003/ui.xml",
+      "phash": "ee4699bae2a5311a",
+      "visit_count": 1,
+      "created_at": "2026-10-07 04:23:58",
+      "variants": []
+    },
+    {
+      "id": 4,
+      "depth": 1,
+      "activity": "com.android.bbkmusic/.WidgetToTrackActivity",
+      "screenshot_path": "states/0004/screenshot.png",
+      "xml_path": "states/0004/ui.xml",
+      "phash": "837ff800f8f4070f",
+      "visit_count": 1,
+      "created_at": "2026-10-07 04:24:07",
+      "variants": []
+    },
+    {
+      "id": 5,
+      "depth": 1,
+      "activity": "com.android.bbkmusic/.WidgetToTrackActivity",
+      "screenshot_path": "states/0005/screenshot.png",
+      "xml_path": "states/0005/ui.xml",
+      "phash": "9fc1209f1f82c13f",
+      "visit_count": 1,
+      "created_at": "2026-10-07 04:24:25",
+      "variants": []
+    },
+    {
+      "id": 6,
+      "depth": 1,
+      "activity": "com.android.bbkmusic/.WidgetToTrackActivity",
+      "screenshot_path": "states/0006/screenshot.png",
+      "xml_path": "states/0006/ui.xml",
+      "phash": "b7f4131f70357814",
+      "visit_count": 1,
+      "created_at": "2026-10-07 04:24:40",
+      "variants": []
+    },
+    {
+      "id": 7,
+      "depth": 1,
+      "activity": "com.android.bbkmusic/.WidgetToTrackActivity",
+      "screenshot_path": "states/0007/screenshot.png",
+      "xml_path": "states/0007/ui.xml",
+      "phash": "9b0f0f87c54ad06e",
+      "visit_count": 1,
+      "created_at": "2026-10-07 04:24:47",
+      "variants": []
+    },
+    {
+      "id": 8,
+      "depth": 1,
+      "activity": "com.android.bbkmusic/.WidgetToTrackActivity",
+      "screenshot_path": "states/0008/screenshot.png",
+      "xml_path": "states/0008/ui.xml",
+      "phash": "bf98e20f43c1183f",
+      "visit_count": 1,
+      "created_at": "2026-10-07 04:24:58",
+      "variants": []
+    }
+  ],
+  "edges": [
+    {
+      "from": 1,
+      "to": 2,
+      "action": {
+        "kind": "click",
+        "x": 428,
+        "y": 309,
+        "x2": 0,
+        "y2": 0,
+        "duration_ms": 350,
+        "text": "",
+        "resource_id": "",
+        "content_desc": "视频",
+        "bounds": {
+          "left": 315,
+          "top": 217,
+          "right": 542,
+          "bottom": 402
+        }
+      }
+    },
+    {
+      "from": 1,
+      "to": 3,
+      "action": {
+        "kind": "click",
+        "x": 655,
+        "y": 309,
+        "x2": 0,
+        "y2": 0,
+        "duration_ms": 350,
+        "text": "",
+        "resource_id": "",
+        "content_desc": "活动",
+        "bounds": {
+          "left": 542,
+          "top": 217,
+          "right": 769,
+          "bottom": 402
+        }
+      }
+    },
+    {
+      "from": 1,
+      "to": 4,
+      "action": {
+        "kind": "click",
+        "x": 1094,
+        "y": 309,
+        "x2": 0,
+        "y2": 0,
+        "duration_ms": 350,
+        "text": "",
+        "resource_id": "com.android.bbkmusic:id/vigour_first_icon",
+        "content_desc": "更多,有新消息",
+        "bounds": {
+          "left": 1014,
+          "top": 217,
+          "right": 1175,
+          "bottom": 402
+        }
+      }
+    },
+    {
+      "from": 1,
+      "to": 1,
+      "action": {
+        "kind": "click",
+        "x": 126,
+        "y": 2691,
+        "x2": 0,
+        "y2": 0,
+        "duration_ms": 350,
+        "text": "",
+        "resource_id": "com.android.bbkmusic:id/concise_bottom_icon_music",
+        "content_desc": "首页",
+        "bounds": {
+          "left": 0,
+          "top": 2611,
+          "right": 252,
+          "bottom": 2772
+        }
+      }
+    },
+    {
+      "from": 1,
+      "to": 5,
+      "action": {
+        "kind": "click",
+        "x": 378,
+        "y": 2691,
+        "x2": 0,
+        "y2": 0,
+        "duration_ms": 350,
+        "text": "",
+        "resource_id": "com.android.bbkmusic:id/concise_bottom_icon_audiobook",
+        "content_desc": "听书",
+        "bounds": {
+          "left": 252,
+          "top": 2611,
+          "right": 504,
+          "bottom": 2772
+        }
+      }
+    },
+    {
+      "from": 1,
+      "to": 6,
+      "action": {
+        "kind": "click",
+        "x": 882,
+        "y": 2691,
+        "x2": 0,
+        "y2": 0,
+        "duration_ms": 350,
+        "text": "",
+        "resource_id": "com.android.bbkmusic:id/concise_bottom_icon_local",
+        "content_desc": "本地",
+        "bounds": {
+          "left": 826,
+          "top": 2652,
+          "right": 938,
+          "bottom": 2731
+        }
+      }
+    },
+    {
+      "from": 1,
+      "to": 7,
+      "action": {
+        "kind": "click",
+        "x": 1134,
+        "y": 2691,
+        "x2": 0,
+        "y2": 0,
+        "duration_ms": 350,
+        "text": "",
+        "resource_id": "com.android.bbkmusic:id/concise_bottom_icon_my",
+        "content_desc": "我的",
+        "bounds": {
+          "left": 1008,
+          "top": 2611,
+          "right": 1260,
+          "bottom": 2772
+        }
+      }
+    },
+    {
+      "from": 1,
+      "to": 8,
+      "action": {
+        "kind": "swipe_up",
+        "x": 630,
+        "y": 2128,
+        "x2": 630,
+        "y2": 784,
+        "duration_ms": 350,
+        "text": "",
+        "resource_id": "",
+        "content_desc": "",
+        "bounds": null
+      }
+    }
+  ]
+}

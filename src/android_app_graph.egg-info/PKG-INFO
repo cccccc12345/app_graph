@@ -1,0 +1,87 @@
+Metadata-Version: 2.4
+Name: android-app-graph
+Version: 0.1.0
+Summary: BFS-based Android UI explorer that builds a visual state-transition graph
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: Pillow>=10.0
+Provides-Extra: dev
+Requires-Dist: pytest>=8.0; extra == "dev"
+
+# Android App Graph
+
+A small Android UI explorer that builds a state-transition graph from an installed APK. It uses **breadth-first exploration**, UIAutomator's view hierarchy for candidate actions, screenshot pHash + SSIM for visual state deduplication, and SQLite for durable graph storage.
+
+> Use a dedicated emulator and a disposable test account. Exploration performs taps, Back, and scroll gestures. Common destructive/financial controls are filtered by label, but this is only a safety heuristic—not a guarantee. Do not run against production accounts or apps containing irreversible actions.
+
+## Requirements
+
+- Python 3.10+
+- ADB / Android SDK platform-tools
+- An authorized Android emulator or device
+- The target app already installed on that device
+
+Install the project (Pillow is installed as a declared dependency):
+
+```bash
+uv sync --extra dev
+source .venv/bin/activate
+```
+
+Check the device and list app package IDs if needed:
+
+```bash
+adb devices -l
+app-graph devices
+```
+
+## Explore
+
+```bash
+app-graph explore --package com.example.app --output ./runs/example \
+  --max-depth 5 --max-states 100 --ssim-threshold 0.90
+```
+
+Use `--device SERIAL` when multiple devices are connected. A run launches the app, captures a root page, then explores click targets, one swipe up/down, and Back from each state. Before each branch it force-stops and relaunches the app, then replays the BFS route and verifies each intermediate state. That gives deterministic edge probing for apps whose navigation can be replayed from a fresh launch. If force-stopping loses required state, try `--keep-app-state` (replay remains best-effort).
+
+Useful bounds:
+
+- `--max-depth`: maximum BFS depth.
+- `--max-states`: stop adding/exploring once the graph reaches this state limit.
+- `--max-actions-per-state`: limit actions expanded from each view.
+- `--settle-seconds`: wait after each gesture; increase for network-heavy apps.
+- `--phash-distance` and `--ssim-threshold`: tune visual clustering. Increase SSIM threshold to be stricter about merging.
+
+## Output
+
+```text
+runs/example/
+├── graph.db                 # SQLite source of truth
+├── graph.json               # Portable states and directed transitions
+├── graph.dot                # Graphviz source
+├── graph.html               # Self-contained, offline graph viewer
+└── states/
+    └── captures/            # Raw screenshot/XML captures used by the run
+```
+
+Open `graph.html` in a browser. State cards display canonical screenshots, depth, visit count, and activity; the transition list preserves action labels. Re-export after changing the database:
+
+```bash
+app-graph export --output ./runs/example
+```
+
+## Current behavior and limitations
+
+- A **state** is a visual cluster, not an Activity or exact screenshot. Each state has one canonical screenshot and every match is retained as a variant.
+- pHash narrows candidate states; SSIM decides whether to merge. Both are computed locally.
+- The first version extracts enabled, visible, clickable UIAutomator nodes, then adds global scroll up/down and Back actions. Text entry, long-click, OCR, and LLM action selection are not included.
+- It assumes routes can be replayed from a fresh app launch. Login gates, random content, permissions, deep-link-only pages, backend mutations, and non-deterministic navigation may limit coverage.
+- A permission/system dialog is treated as outside the target app, and the action becomes a self-loop; the explorer does not automatically grant permissions.
+- Common risky words in English and Chinese are filtered from candidate labels, but icon-only or unlabeled actions can still be risky. Review the app and use an isolated emulator.
+- Exports are regenerated at the end of a completed run. If interrupted, the SQLite DB and captures remain available; run `app-graph export` to create graph files.
+
+## Development
+
+```bash
+uv run pytest
+```

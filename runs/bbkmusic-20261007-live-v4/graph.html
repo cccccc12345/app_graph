@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Android App Graph</title><style>
+:root{--bg:#f8fafc;--ink:#172033;--muted:#64748b;--line:#94a3b8;--card:#fff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,-apple-system,sans-serif}
+header{position:sticky;top:0;z-index:5;padding:14px 20px;background:#fff;border-bottom:1px solid #e2e8f0;display:flex;gap:16px;align-items:center}
+h1{font-size:18px;margin:0}#stats{color:var(--muted)}
+main{padding:20px;overflow:auto}
+#map{position:relative;margin:0 auto}
+#edges{position:absolute;left:0;top:0;overflow:visible;pointer-events:none}
+.edge{stroke:var(--line);stroke-width:1.5;fill:none;marker-end:url(#arrow)}
+.edge-label{font-size:11px;fill:#475569;paint-order:stroke;stroke:var(--bg);stroke-width:4px;stroke-linejoin:round}
+.node{position:absolute;width:190px;height:300px;display:flex;flex-direction:column;background:var(--card);border:1px solid #cbd5e1;border-top:4px solid var(--line);border-radius:10px;overflow:hidden;box-shadow:0 2px 8px #0f172a12}
+.node img{display:block;width:100%;height:250px;flex:0 0 250px;object-fit:contain;background:#0f172a}
+.meta{padding:7px 10px;flex:1;min-height:0}
+.meta strong{display:block;font-size:13px}
+.meta small{display:block;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#transitions{margin-top:35px;max-width:1000px}
+#transitions h2{font-size:16px}.transition{padding:8px 10px;border-bottom:1px solid #e2e8f0}
+code{color:#1d4ed8}
+</style></head><body>
+<header><h1>Android App Graph</h1><span id="stats"></span></header>
+<main><div id="map"></div><section id="transitions"><h2>Transitions</h2><div id="list"></div></section></main>
+<script>
+const graph={"states": [{"id": 1, "depth": 0, "activity": "com.android.bbkmusic/.MusicMainActivity", "screenshot_path": "states/0001/screenshot.png", "xml_path": "states/0001/ui.xml", "phash": "ef2285d991a06f66", "visit_count": 2, "created_at": "2026-10-07 04:23:46", "variants": [{"screenshot_path": "states/0001/variants/0001.png", "xml_path": "states/0001/variants/0001.xml", "phash": "ffa6845990847f1a", "created_at": "2026-10-07 04:24:16"}]}, {"id": 2, "depth": 1, "activity": "com.android.bbkmusic/.MusicMainActivity", "screenshot_path": "states/0002/screenshot.png", "xml_path": "states/0002/ui.xml", "phash": "be91c0c4e33e99c9", "visit_count": 1, "created_at": "2026-10-07 04:23:50", "variants": []}, {"id": 3, "depth": 1, "activity": "com.android.bbkmusic/.WidgetToTrackActivity", "screenshot_path": "states/0003/screenshot.png", "xml_path": "states/0003/ui.xml", "phash": "ee4699bae2a5311a", "visit_count": 1, "created_at": "2026-10-07 04:23:58", "variants": []}, {"id": 4, "depth": 1, "activity": "com.android.bbkmusic/.WidgetToTrackActivity", "screenshot_path": "states/0004/screenshot.png", "xml_path": "states/0004/ui.xml", "phash": "837ff800f8f4070f", "visit_count": 1, "created_at": "2026-10-07 04:24:07", "variants": []}, {"id": 5, "depth": 1, "activity": "com.android.bbkmusic/.WidgetToTrackActivity", "screenshot_path": "states/0005/screenshot.png", "xml_path": "states/0005/ui.xml", "phash": "9fc1209f1f82c13f", "visit_count": 1, "created_at": "2026-10-07 04:24:25", "variants": []}, {"id": 6, "depth": 1, "activity": "com.android.bbkmusic/.WidgetToTrackActivity", "screenshot_path": "states/0006/screenshot.png", "xml_path": "states/0006/ui.xml", "phash": "b7f4131f70357814", "visit_count": 1, "created_at": "2026-10-07 04:24:40", "variants": []}, {"id": 7, "depth": 1, "activity": "com.android.bbkmusic/.WidgetToTrackActivity", "screenshot_path": "states/0007/screenshot.png", "xml_path": "states/0007/ui.xml", "phash": "9b0f0f87c54ad06e", "visit_count": 1, "created_at": "2026-10-07 04:24:47", "variants": []}, {"id": 8, "depth": 1, "activity": "com.android.bbkmusic/.WidgetToTrackActivity", "screenshot_path": "states/0008/screenshot.png", "xml_path": "states/0008/ui.xml", "phash": "bf98e20f43c1183f", "visit_count": 1, "created_at": "2026-10-07 04:24:58", "variants": []}], "edges": [{"from": 1, "to": 2, "action": {"kind": "click", "x": 428, "y": 309, "x2": 0, "y2": 0, "duration_ms": 350, "text": "", "resource_id": "", "content_desc": "视频", "bounds": {"left": 315, "top": 217, "right": 542, "bottom": 402}}}, {"from": 1, "to": 3, "action": {"kind": "click", "x": 655, "y": 309, "x2": 0, "y2": 0, "duration_ms": 350, "text": "", "resource_id": "", "content_desc": "活动", "bounds": {"left": 542, "top": 217, "right": 769, "bottom": 402}}}, {"from": 1, "to": 4, "action": {"kind": "click", "x": 1094, "y": 309, "x2": 0, "y2": 0, "duration_ms": 350, "text": "", "resource_id": "com.android.bbkmusic:id/vigour_first_icon", "content_desc": "更多,有新消息", "bounds": {"left": 1014, "top": 217, "right": 1175, "bottom": 402}}}, {"from": 1, "to": 1, "action": {"kind": "click", "x": 126, "y": 2691, "x2": 0, "y2": 0, "duration_ms": 350, "text": "", "resource_id": "com.android.bbkmusic:id/concise_bottom_icon_music", "content_desc": "首页", "bounds": {"left": 0, "top": 2611, "right": 252, "bottom": 2772}}}, {"from": 1, "to": 5, "action": {"kind": "click", "x": 378, "y": 2691, "x2": 0, "y2": 0, "duration_ms": 350, "text": "", "resource_id": "com.android.bbkmusic:id/concise_bottom_icon_audiobook", "content_desc": "听书", "bounds": {"left": 252, "top": 2611, "right": 504, "bottom": 2772}}}, {"from": 1, "to": 6, "action": {"kind": "click", "x": 882, "y": 2691, "x2": 0, "y2": 0, "duration_ms": 350, "text": "", "resource_id": "com.android.bbkmusic:id/concise_bottom_icon_local", "content_desc": "本地", "bounds": {"left": 826, "top": 2652, "right": 938, "bottom": 2731}}}, {"from": 1, "to": 7, "action": {"kind": "click", "x": 1134, "y": 2691, "x2": 0, "y2": 0, "duration_ms": 350, "text": "", "resource_id": "com.android.bbkmusic:id/concise_bottom_icon_my", "content_desc": "我的", "bounds": {"left": 1008, "top": 2611, "right": 1260, "bottom": 2772}}}, {"from": 1, "to": 8, "action": {"kind": "swipe_up", "x": 630, "y": 2128, "x2": 630, "y2": 784, "duration_ms": 350, "text": "", "resource_id": "", "content_desc": "", "bounds": null}}]};
+const map=document.querySelector('#map');
+const states=graph.states,edges=graph.edges;
+document.querySelector('#stats').textContent=`${states.length} states · ${edges.length} transitions`;
+const nodeW=190,nodeH=300;
+let seed=7;const rnd=()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296};
+const nodes=states.map((s,i)=>{const angle=i*2.399963,r=70*Math.sqrt(i+1);return{id:s.id,state:s,x:Math.cos(angle)*r+(rnd()-.5)*30,y:Math.sin(angle)*r+(rnd()-.5)*30,vx:0,vy:0}});
+const index=new Map(nodes.map(n=>[n.id,n]));
+const links=edges.map(e=>({a:index.get(e.from),b:index.get(e.to),edge:e})).filter(l=>l.a&&l.b);
+const iterations=Math.min(600,120+nodes.length*6);
+for(let it=0;it<iterations;it++){
+  const alpha=1-it/iterations;
+  for(let i=0;i<nodes.length;i++){const a=nodes[i];for(let j=i+1;j<nodes.length;j++){const b=nodes[j];let dx=a.x-b.x,dy=a.y-b.y,d2=dx*dx+dy*dy;if(d2<1){dx=rnd()-.5;dy=rnd()-.5;d2=1}if(d2>800*800)continue;const d=Math.sqrt(d2),f=1600000/d2;const fx=dx/d*f,fy=dy/d*f;a.vx+=fx;a.vy+=fy;b.vx-=fx;b.vy-=fy}}
+  for(const l of links){const dx=l.b.x-l.a.x,dy=l.b.y-l.a.y,d=Math.hypot(dx,dy)||1,f=(d-340)*0.02;const fx=dx/d*f,fy=dy/d*f;l.a.vx+=fx;l.a.vy+=fy;l.b.vx-=fx;l.b.vy-=fy}
+  for(const n of nodes){n.vx-=n.x*0.004;n.vy-=n.y*0.004;n.vx*=0.82;n.vy*=0.82;n.x+=n.vx*alpha;n.y+=n.vy*alpha}
+}
+for(let pass=0;pass<100;pass++){let moved=false;for(let i=0;i<nodes.length;i++)for(let j=i+1;j<nodes.length;j++){const a=nodes[i],b=nodes[j];const ox=nodeW+26-Math.abs(a.x-b.x),oy=nodeH+26-Math.abs(a.y-b.y);if(ox>0&&oy>0){moved=true;if(ox<oy){const p=ox/2*(a.x<b.x?-1:1);a.x+=p;b.x-=p}else{const p=oy/2*(a.y<b.y?-1:1);a.y+=p;b.y-=p}}}if(!moved)break}
+let minX=Infinity,minY=Infinity,maxX=-Infinity,maxY=-Infinity;
+for(const n of nodes){minX=Math.min(minX,n.x-nodeW/2);minY=Math.min(minY,n.y-nodeH/2);maxX=Math.max(maxX,n.x+nodeW/2);maxY=Math.max(maxY,n.y+nodeH/2)}
+const pad=34;
+if(nodes.length){for(const n of nodes){n.x+=pad-minX;n.y+=pad-minY}}
+map.style.width=((nodes.length?maxX-minX:0)+pad*2)+'px';map.style.height=((nodes.length?maxY-minY:0)+pad*2)+'px';
+const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
+svg.setAttribute('id','edges');svg.setAttribute('width',map.style.width);svg.setAttribute('height',map.style.height);
+svg.innerHTML='<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#94a3b8"/></marker></defs>';
+map.appendChild(svg);
+const palette=['#2563eb','#0891b2','#16a34a','#d97706','#dc2626','#7c3aed','#db2777','#65a30d'];
+function depthColor(depth){return palette[((depth%palette.length)+palette.length)%palette.length]}
+function clip(node,dx,dy){const sx=dx===0?Infinity:(nodeW/2+8)/Math.abs(dx);const sy=dy===0?Infinity:(nodeH/2+8)/Math.abs(dy);const s=Math.min(sx,sy);return{x:node.x+dx*s,y:node.y+dy*s}}
+function escapeHtml(v){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+for(const n of nodes){const card=document.createElement('article');card.className='node';card.style.left=(n.x-nodeW/2)+'px';card.style.top=(n.y-nodeH/2)+'px';card.style.borderTopColor=depthColor(n.state.depth);const img=document.createElement('img');img.loading='lazy';img.src=n.state.screenshot_path;img.alt='State '+n.id+' screenshot';card.appendChild(img);const meta=document.createElement('div');meta.className='meta';meta.innerHTML='<strong>State '+n.id+'</strong><small>Depth '+n.state.depth+' · Visits '+n.state.visit_count+'</small><small title="'+escapeHtml(n.state.activity||'')+'">'+escapeHtml(n.state.activity||'')+'</small>';card.appendChild(meta);map.appendChild(card)}
+function addLabel(x,y,text){const label=document.createElementNS('http://www.w3.org/2000/svg','text');label.setAttribute('class','edge-label');label.setAttribute('x',x);label.setAttribute('y',y);label.setAttribute('text-anchor','middle');label.textContent=text;svg.appendChild(label)}
+for(const l of links){const action=l.edge.action;const label=action.text||action.content_desc||action.kind||'action';if(l.a===l.b){const cx=l.a.x,top=l.a.y-nodeH/2;const path=document.createElementNS('http://www.w3.org/2000/svg','path');path.setAttribute('class','edge');path.setAttribute('d',`M${cx-55},${top+26} C${cx-75},${top-68} ${cx+75},${top-68} ${cx+55},${top+26}`);svg.appendChild(path);addLabel(cx,top-38,label);continue}const dx=l.b.x-l.a.x,dy=l.b.y-l.a.y;const p1=clip(l.a,dx,dy),p2=clip(l.b,-dx,-dy);const nx=-dy,ny=dx,nl=Math.hypot(nx,ny)||1;const bend=Math.min(70,Math.hypot(dx,dy)*0.12);const cx=(p1.x+p2.x)/2+nx/nl*bend,cy=(p1.y+p2.y)/2+ny/nl*bend;const path=document.createElementNS('http://www.w3.org/2000/svg','path');path.setAttribute('class','edge');path.setAttribute('d',`M${p1.x},${p1.y} Q${cx},${cy} ${p2.x},${p2.y}`);svg.appendChild(path);addLabel(cx,cy-6,label)}
+const list=document.querySelector('#list');for(const e of edges){const row=document.createElement('div');row.className='transition';const ac=e.action;row.innerHTML='<code>State '+e.from+'</code> — '+escapeHtml(ac.text||ac.content_desc||ac.kind)+' → <code>State '+e.to+'</code>';list.appendChild(row)}
+</script></body></html>
